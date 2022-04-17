@@ -69,6 +69,7 @@ CSE330	22	Su(08:00 AM-09:20 AM-UB30702) Tu(08:00 AM-09:20 AM-UB30702) We(02:00 P
 # print([1,2,4]==[4,2,1])
 
 import re
+from tabulate import tabulate
 arrCse221 = cse221.replace("\t"," ").split("CSE221")
 course = "CSE221"
 arr2Cse221 = []
@@ -158,7 +159,7 @@ for a in arr2Cse221:
 
     for b in arr2Cse330:
         for c in arr2Mat216:
-            for d in arr2Cse221:
+            for d in arr2Cse251:
 
                 if len(set(a)&set(b))==0:
                     comb1 = set(a).union(b)
@@ -180,10 +181,60 @@ for a in arr2Cse221:
 # print(lastArr)
 f= open("course.txt","w")
 for r in lastArr:
+    print(r[0])
+    arr0 = ["Time", "Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+    arr1 = ["________"] * 8
+    arr2 = ["________"] * 8
+    arr3 = ["________"] * 8
+    arr4 = ["________"] * 8
+    arr5 = ["________"] * 8
+    arr6 = ["________"] * 8
+    arr1[0] = "(08:00 AM 09:20 AM)"
+    arr2[0] = "(09:30 AM 10:50 AM)"
+    arr3[0] = "(11:00 AM 12:20 PM)"
+    arr4[0] = "(12:30 PM 01:50 PM)"
+    arr5[0] = "(02:00 PM 03:20 PM)"
+    arr6[0] = "(03:30 PM 04:50 PM)"
     for j in r:
 
-        f.write(str(j)+"\n")
-    f.write("\n")
+
+
+        for k in range(1,len(j)):
+            index = -1
+
+            # print("j[k][0,2]",j[k][0,2],j[k][2:])
+            if j[k][0:2]=="Su":
+                index = 1
+            if j[k][0:2]=="Mo":
+                index = 2
+            if j[k][0:2]=="Tu":
+                index = 3
+            if j[k][0:2]=="We":
+                index = 4
+            if j[k][0:2]=="Th":
+                index = 5
+            if j[k][0:2]=="Fr":
+                index = 6
+            if j[k][0:2]=="Sa":
+                index = 7
+            if j[k][2:]=="(08:00 AM 09:20 AM)":
+                arr1[index]=j[0]
+            if j[k][2:]=="(09:30 AM 10:50 AM)":
+                arr2[index]=j[0]
+            if j[k][2:]=="(11:00 AM 12:20 PM)":
+                arr3[index]=j[0]
+            if j[k][2:]=="(12:30 PM 01:50 PM)":
+                arr4[index]=j[0]
+            if j[k][2:]=="(02:00 PM 03:20 PM)":
+                arr5[index]=j[0]
+            if j[k][2:]=="(03:30 PM 04:50 PM)":
+                arr6[index]=j[0]
+
+    table = [arr0,arr1,arr2,arr3,arr4,arr5,arr6]
+    table = tabulate(table)
+    print(table)
+    f.write(table)
+    f.write("\n\n\n\n")
 
 f.close()
 
