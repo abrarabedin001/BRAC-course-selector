@@ -73,19 +73,21 @@ arrCse221 = cse221.replace("\t"," ").split("CSE221")
 course = "CSE221"
 arr2Cse221 = []
 for r in range(1,len(arrCse221)):
-    if "08:00 AM-09:20 AM" not in arrCse221[r]:
+    if "08:00 AM-09:20 AM" not in arrCse221[r] :
 
         word = arrCse221[r].replace("\n","").replace(")",") ,").replace("-"," ")
         section = course+"_"+word[1:3]
         word = word[3:]
         word2 = re.sub("\sUB[0-9][0-9][0-9][0-9][0-9]","",word).split(",")
         word2.pop()
+        for r in range(len(word2)):
+            word2[r] = word2[r].strip()
         word2.insert(0,section)
 
 
         arr2Cse221.append(word2)
 
-# print(arr2Cse221)
+print(arr2Cse221)
 
 arrCse251 = cse251.replace("\t"," ").split("CSE251")
 course = "CSE251"
@@ -98,6 +100,8 @@ for r in range(1,len(arrCse251)):
         word = word[3:]
         word2 = re.sub("\sUB[0-9][0-9][0-9][0-9][0-9]","",word).split(",")
         word2.pop()
+        for r in range(len(word2)):
+            word2[r] = word2[r].strip()
         word2.insert(0,section)
 
 
@@ -116,6 +120,8 @@ for r in range(1,len(arrMat216)):
         word = word[3:]
         word2 = re.sub("\sUB[0-9][0-9][0-9][0-9][0-9]","",word).split(",")
         word2.pop()
+        for r in range(len(word2)):
+            word2[r] = word2[r].strip()
         word2.insert(0,section)
 
 
@@ -136,26 +142,23 @@ for r in range(1,len(arrCse330)):
         word2 = re.sub("\sUB[0-9][0-9][0-9][0-9][0-9]","",word).split(",")
         word2.pop()
         # print(word2)
+        word2.sort()
+        for r in range(len(word2)):
+            word2[r] = word2[r].strip()
         word2.insert(0,section)
 
 
         arr2Cse330.append(word2)
 
 # print(arr2Cse330)
-a = {1,2,4}
-b = {6,7,8,1}
-c = {99,1}
-print(a&b&c)
 
-f = [{1,2,4,5}]
-print({2,4,1,5} in f)
 
 lastArr = []
-for a in arr2Cse251:
+for a in arr2Cse221:
 
     for b in arr2Cse330:
-        for c in arr2Cse221:
-            for d in arr2Mat216:
+        for c in arr2Mat216:
+            for d in arr2Cse221:
 
                 if len(set(a)&set(b))==0:
                     comb1 = set(a).union(b)
@@ -164,7 +167,7 @@ for a in arr2Cse251:
 
                         if len(comb2 & set(d))==0:
                             # print(a[0],b[0])
-                            str4 = str(a[0])+str(b[0])+str(c[0])+str(d[0])
+                            str4 = [a,b,c,d]
                             lastArr.append(str4)
 
 
@@ -172,12 +175,17 @@ for a in arr2Cse251:
                 #     pass
                 # else:
                 #     print(a,b,c,d)
-print(len(lastArr))
-print(len(arr2Cse221)*len(arr2Cse251)*len(arr2Cse330)*len(arr2Mat216))
-print(lastArr)
+# print(len(lastArr))
+# print(len(arr2Cse221)*len(arr2Cse251)*len(arr2Cse330)*len(arr2Mat216))
+# print(lastArr)
+f= open("course.txt","w")
+for r in lastArr:
+    for j in r:
 
+        f.write(str(j)+"\n")
+    f.write("\n")
 
-
+f.close()
 
 
 
