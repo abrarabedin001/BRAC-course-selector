@@ -110,7 +110,7 @@ for r in range(1,len(arrCse251)):
 # print(arr2Cse251)
 
 arrMat216 = mat216.replace("\t"," ").split("MAT216")
-course = "Mat216"
+course = "MAT216"
 arr2Mat216 = []
 for r in range(1,len(arrMat216)):
     if "08:00 AM-09:20 AM" not in arrMat216[r]:
@@ -130,7 +130,7 @@ for r in range(1,len(arrMat216)):
 # print(arr2Mat216)
 #
 arrCse330 = cse330.replace("\t"," ").split("CSE330")
-course = "CSe330"
+course = "CSE330"
 arr2Cse330 = []
 for r in range(1,len(arrCse330)):
     if "08:00 AM-09:20 AM" not in arrCse330[r]:
