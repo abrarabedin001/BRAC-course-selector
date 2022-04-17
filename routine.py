@@ -181,7 +181,7 @@ for a in arr2Cse221:
 # print(lastArr)
 f= open("course.txt","w")
 for r in lastArr:
-    print(r[0])
+    
     arr0 = ["Time", "Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
     arr1 = ["________"] * 8
     arr2 = ["________"] * 8
